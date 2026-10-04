@@ -60,16 +60,8 @@
       <h2>{{ T "follow_the_race" }}</h2>
       <p class="lead">{{ T "tracker_text" }}</p>
     </div>
-    <div class="embed" data-embed="{{ site.Params.trackerURL }}">
-      <div class="embed__placeholder">
-        <div>
-          <p>{{ T "tracker_consent" }}</p>
-          <div class="actions center">
-            <button class="btn" type="button" data-embed-load>{{ T "load_tracker" }}</button>
-            <a class="btn btn--ghost" href="{{ site.Params.trackerURL }}" target="_blank" rel="noopener">{{ T "open_new_tab" }}</a>
-          </div>
-        </div>
-      </div>
+    <div class="embed">
+      <iframe src="{{ site.Params.trackerURL }}" title="VIA live tracker" loading="lazy" allow="fullscreen" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </section>

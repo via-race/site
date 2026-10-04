@@ -19,17 +19,6 @@ if (video && matchMedia('(min-width: 860px) and (prefers-reduced-motion: no-pref
   video.remove();
 }
 
-// Live tracker: click-to-load (keeps third-party requests off by default)
-document.querySelectorAll('[data-embed]').forEach((box) => {
-  box.querySelector('[data-embed-load]')?.addEventListener('click', () => {
-    const f = document.createElement('iframe');
-    f.src = box.dataset.embed;
-    f.title = 'VIA live tracker';
-    f.allow = 'fullscreen';
-    box.replaceChildren(f);
-  });
-});
-
 // Newsletter: POST the email (raw body) to the Cloudflare Worker, like the old site
 document.querySelectorAll('form[data-newsletter]').forEach((form) => {
   const msg = form.querySelector('.msg');
