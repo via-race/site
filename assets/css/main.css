@@ -169,12 +169,21 @@ p { margin: 0 0 1em; }
 .section--dark .lead { color: var(--via-light-slate); }
 
 /* Pillars */
-.pillars { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin: 1.5em 0; padding: 0; list-style: none; }
-.pillar { background: #fff; border-radius: var(--radius); padding: 28px; border-top: 4px solid var(--via-coral); box-shadow: 0 1px 0 rgba(0,0,0,.04); }
+.pillars { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin: 1.5em 0; padding: 0; list-style: none; }
+/* coral bar drawn inside a clipped card, so its ends stay square with the rounded corners */
+.pillar { position: relative; overflow: hidden; background: #fff; border-radius: var(--radius); padding: 28px 24px 24px; box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 8px 24px -18px rgba(0,0,0,.35); }
+.pillar::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--via-coral); }
 .section--slate .pillar { background: var(--via-paper); }
-.pillar h3 { margin-bottom: .35em; }
-.pillar p { margin: 0; color: var(--ink-soft); }
-.pillar .emoji { font-size: 1.6rem; display: block; margin-bottom: 8px; }
+.pillar h3 { margin: 0 0 .35em; font-size: 1.15rem; }
+.pillar p { margin: 0; color: var(--ink-soft); font-size: 1rem; line-height: 1.55; }
+.pillar .emoji { font-size: 1.6rem; line-height: 1; display: block; margin-bottom: 14px; }
+/* inside Markdown pages: undo the list/heading styles meant for article text */
+.prose .pillars { padding: 0; margin: 1.2em 0 2em; grid-template-columns: repeat(3, 1fr); }
+.prose .pillars > li { margin: 0; }
+.prose .pillars > li::marker { content: none; }
+.prose .pillar { background: var(--via-paper); }
+.prose .pillar h3 { margin-top: 0; }
+@media (max-width: 700px) { .prose .pillars { grid-template-columns: 1fr; } }
 
 /* ---------- Stats bar (icons from the original site) ---------- */
 .stats { background: var(--via-slate); color: #fff; }
