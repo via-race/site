@@ -11,7 +11,6 @@ layouts/               HTML templates (no theme dependency)
 assets/css/main.css    the whole design, brand colours as CSS variables
 assets/js/main.js      ~2 KB: mobile menu, lightbox, newsletter, tracker click-to-load
 assets/svg/            VIA icon + wordmark, vector-extracted from the brand PDF
-static/admin/          optional browser editor (Decap CMS)
 tools/                 one-off Strapi migration + image optimiser
 ```
 
@@ -57,7 +56,7 @@ Run `python3 tools/optimize_images.py` before committing big phone photos (shrin
 
 ### Editing without Git (optional)
 
-`/admin/` is a Decap CMS editor: forms for posts, FAQ, race data and sponsors, photo upload, drafts with review. Each save is a commit, so the site redeploys itself. It needs a GitHub OAuth helper once: deploy a tiny Cloudflare Worker (for example [sterlingwes/decap-proxy](https://github.com/sterlingwes/decap-proxy), free tier, next to the existing newsletter Worker), create a GitHub OAuth App pointing to it, then set `repo` and `base_url` in `static/admin/config.yml`. Simpler alternative with zero setup: [Pages CMS](https://pagescms.org) (log in with GitHub). Or just use the GitHub web editor (press `.` in the repo).
+Use the GitHub web editor: open the repo and press `.`, or edit a file and commit from the browser. Every commit to `main` redeploys the site. For a form-based editor with photo upload, connect the repo to [Pages CMS](https://pagescms.org) (log in with GitHub, no server needed).
 
 ## Languages
 
@@ -80,7 +79,7 @@ then copy `i18n/en.yaml` to `i18n/de.yaml`, translate the strings, uncomment the
 | JS | **Vanilla, ~2 KB** | Only a menu, a lightbox (native `<dialog>`), a newsletter POST and click-to-load tracker | Alpine.js would be the next step if more interactivity appears; no SPA framework needed |
 | Fonts | **Jost** (self-hosted) | Open-source geometric sans close to the brand font *Dunbar Text*, which is commercial. Self-hosting avoids Google Fonts (GDPR) | If a Dunbar Text web licence is bought, swap the `@font-face` in `layouts/_partials/head.html` |
 | Hosting | **GitHub Pages + Actions** | Free, HTTPS, CDN, deploy on push | Cloudflare Pages / Netlify are equally free and also work with this repo unchanged |
-| Editing | **Markdown in Git**, optional **Decap CMS** | Content is portable plain text; no database or server | Keeping Strapi means paying for and patching a server |
+| Editing | **Markdown in Git**, optional **Pages CMS** | Content is portable plain text; no database or server | Keeping Strapi means paying for and patching a server |
 
 ## What changed vs the old stack
 
