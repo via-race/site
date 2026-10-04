@@ -1,0 +1,92 @@
+{{ define "main" }}
+{{- $r := hugo.Data.race }}
+<section class="hero">
+  <div class="hero__media">
+    {{- with partial "cover.html" . }}{{ partial "img.html" (dict "img" . "sizes" "100vw" "alt" "" "eager" true "widths" (slice 800 1280 1920)) }}{{ end }}
+  </div>
+  {{- with site.Params.heroYouTube }}
+  <iframe class="hero__video" data-src="https://www.youtube-nocookie.com/embed/{{ . }}?rel=0&controls=0&autoplay=1&mute=1&loop=1&playlist={{ . }}&playsinline=1&modestbranding=1" title="VIA race video" allow="autoplay; encrypted-media" tabindex="-1" aria-hidden="true"></iframe>
+  {{- end }}
+  <div class="hero__inner">
+    {{ partial "logo.html" (dict "name" "via-wordmark" "class" "hero__word") }}
+    <h1>{{ .Params.hero_title }}</h1>
+    <p>{{ .Params.hero_subtitle }}</p>
+    <div class="actions">
+      <a class="btn" href="{{ relref . "/faq" }}">{{ T "how_to_join" }}</a>
+      <a class="btn btn--ghost" href="{{ site.Params.trackerURL }}" target="_blank" rel="noopener">{{ T "follow_the_race" }}</a>
+    </div>
+  </div>
+</section>
+
+{{ partial "stats.html" . }}
+
+<section class="section section--slate">
+  <div class="wrap">
+    <div class="section__head">
+      <span class="eyebrow">{{ $r.chapter }} · {{ $r.year }}</span>
+      <h2>{{ .Params.intro_title }}</h2>
+      <p class="lead">{{ .Params.intro_lead }}</p>
+    </div>
+    <ul class="pillars">
+      {{- range .Params.pillars }}
+      <li class="pillar"><h3>{{ .title }}</h3><p>{{ .text }}</p></li>
+      {{- end }}
+    </ul>
+  </div>
+</section>
+
+{{- with .Params.map_image }}{{ with resources.Get . }}
+<section class="section">
+  <div class="wrap media-block">
+    <figure>
+      {{ partial "img.html" (dict "img" . "sizes" "(max-width: 860px) 100vw, 700px" "alt" "Map of the VIA Chapter III route" "widths" (slice 700 1400)) }}
+    </figure>
+    <div>
+      <span class="eyebrow">{{ T "the_route" }}</span>
+      <h2>{{ $r.route }}</h2>
+      <p>{{ $.Params.map_caption }}</p>
+      <div class="actions mt-2">
+        <a class="btn" href="{{ relref $ "/faq" }}#the-route">{{ T "route_faq" }}</a>
+        <a class="btn btn--dark" href="{{ relref $ "/about" }}">{{ T "about_via" }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+{{- end }}{{ end }}
+
+<section class="section section--dark" id="tracker">
+  <div class="wrap">
+    <div class="section__head">
+      <h2>{{ T "follow_the_race" }}</h2>
+      <p class="lead">{{ T "tracker_text" }}</p>
+    </div>
+    <div class="embed" data-embed="{{ site.Params.trackerURL }}">
+      <div class="embed__placeholder">
+        <div>
+          <p>{{ T "tracker_consent" }}</p>
+          <div class="actions center">
+            <button class="btn" type="button" data-embed-load>{{ T "load_tracker" }}</button>
+            <a class="btn btn--ghost" href="{{ site.Params.trackerURL }}" target="_blank" rel="noopener">{{ T "open_new_tab" }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{- $posts := where site.RegularPages "Section" "blog" }}
+{{- with first 3 $posts }}
+<section class="section section--paper">
+  <div class="wrap">
+    <div class="section__head">
+      <h2>{{ T "from_the_diary" }}</h2>
+      <p class="lead">{{ T "diary_text" }}</p>
+    </div>
+    <div class="cards">
+      {{- range . }}{{ partial "post-card.html" . }}{{ end }}
+    </div>
+    <p class="center mt-3"><a class="btn btn--dark" href="{{ relref $ "/blog" }}">{{ T "all_stories" }}</a></p>
+  </div>
+</section>
+{{- end }}
+{{ end }}

@@ -1,0 +1,28 @@
+{{- /* Shared list for /blog, categories and tags. Context: dict "page" . "pages" $pages */ -}}
+{{- $p := .page }}
+<div class="filters" aria-label="{{ T "categories" }}">
+  <span class="label">{{ T "categories" }}</span>
+  <a href="{{ relref $p "/blog" }}"{{ if eq $p.Section "blog" }} aria-current="page"{{ end }}>{{ T "all" }}</a>
+  {{- range site.Taxonomies.categories.ByCount }}
+  <a href="{{ .Page.RelPermalink }}"{{ if eq $p.RelPermalink .Page.RelPermalink }} aria-current="page"{{ end }}>{{ .Page.LinkTitle }}</a>
+  {{- end }}
+</div>
+<div class="filters" aria-label="{{ T "tags" }}">
+  <span class="label">{{ T "tags" }}</span>
+  {{- range site.Taxonomies.tags.ByCount }}
+  <a href="{{ .Page.RelPermalink }}"{{ if eq $p.RelPermalink .Page.RelPermalink }} aria-current="page"{{ end }}>{{ .Page.LinkTitle }}</a>
+  {{- end }}
+</div>
+{{- $pager := $p.Paginate .pages }}
+<div class="cards">
+  {{- range $pager.Pages }}{{ partial "post-card.html" . }}{{ end }}
+</div>
+{{- if gt $pager.TotalPages 1 }}
+<ul class="pager">
+  {{- with $pager.Prev }}<li><a href="{{ .URL }}" aria-label="{{ T "newer" }}">←</a></li>{{ end }}
+  {{- range $pager.Pagers }}
+  <li{{ if eq . $pager }} class="active"{{ end }}>{{ if eq . $pager }}<span>{{ .PageNumber }}</span>{{ else }}<a href="{{ .URL }}">{{ .PageNumber }}</a>{{ end }}</li>
+  {{- end }}
+  {{- with $pager.Next }}<li><a href="{{ .URL }}" aria-label="{{ T "older" }}">→</a></li>{{ end }}
+</ul>
+{{- end }}

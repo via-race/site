@@ -1,0 +1,13 @@
+<article class="card">
+  <div class="card__img">
+    {{- with partial "cover.html" . }}{{ partial "img.html" (dict "img" . "sizes" "(max-width: 700px) 100vw, 400px" "alt" "" "widths" (slice 400 800)) }}{{ end }}
+  </div>
+  <div class="card__body">
+    <div class="meta">
+      {{- with .GetTerms "categories" }}{{ range first 1 . }}<a class="chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}{{ end }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_medium" }}</time>
+    </div>
+    <h3 class="card__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <p class="card__excerpt">{{ .Description | default .Summary | plainify }}</p>
+  </div>
+</article>

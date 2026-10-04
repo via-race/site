@@ -1,0 +1,5 @@
+{{- /* usage: partial "logo.html" (dict "name" "via-icon" "class" "icon") */ -}}
+{{- with resources.Get (printf "svg/%s.svg" .name) -}}
+{{- $svg := .Content | replaceRE `<svg ` (printf `<svg class="%s" aria-hidden="true" focusable="false" ` ($.class | default "")) -}}
+{{- $svg | replaceRE ` role="img" aria-label="VIA"` "" | safeHTML -}}
+{{- end -}}

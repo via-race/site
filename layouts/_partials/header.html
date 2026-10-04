@@ -1,0 +1,18 @@
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }} home">
+      {{ partial "logo.html" (dict "name" "via-icon" "class" "icon") }}
+      {{ partial "logo.html" (dict "name" "via-wordmark" "class" "word") }}
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="nav" aria-label="{{ T "menu" }}">
+      {{ partial "icon.html" "menu" }}
+    </button>
+    <nav class="nav" id="nav" aria-label="Main">
+      {{- $current := . }}
+      {{- range site.Menus.main }}
+      <a href="{{ .URL }}"{{ if or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) (and .Page (eq $current.Section .Page.Section) (ne $current.Section "")) }} aria-current="page"{{ end }}>{{ T .Identifier | default .Name }}</a>
+      {{- end }}
+      <a class="btn btn--ghost" href="{{ site.Params.trackerURL }}" target="_blank" rel="noopener">{{ T "follow_the_race" }}</a>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,12 @@
+{{- /* usage: partial "gallery.html" (slice of image resources) */ -}}
+<div class="gallery" data-gallery>
+  {{- range $i, $img := . }}
+  {{- $big := $img.Resize "1800x webp q80" }}
+  {{- $thumb := $img.Fill "500x500 webp q72 Smart" }}
+  {{- $wide := and (gt $img.Width (mul $img.Height 1.6)) (eq (mod $i 5) 0) }}
+  <a href="{{ $big.RelPermalink }}"{{ if $wide }} class="wide"{{ end }} data-w="{{ $big.Width }}" data-h="{{ $big.Height }}">
+    {{- if $wide }}{{ $thumb = $img.Fill "1000x500 webp q72 Smart" }}{{ end }}
+    <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="" loading="lazy" decoding="async">
+  </a>
+  {{- end }}
+</div>

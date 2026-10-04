@@ -1,0 +1,129 @@
+baseURL = "https://via-race.com/"
+title = "VIA Race"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+# keep old Nuxt URLs exactly as they were (e.g. /blog/Juri-vs-Italy-gravel-lessons)
+disablePathToLower = true
+enableRobotsTXT = true
+timeZone = "Europe/Amsterdam"
+summaryLength = 30
+
+[pagination]
+  pagerSize = 9
+  path = "page"
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+
+# Old site used /blog/categories/<slug> and /blog/tags/<slug>
+[permalinks]
+  [permalinks.page]
+    blog = "/blog/:contentbasename/"
+  [permalinks.term]
+    categories = "/blog/categories/:contentbasename/"
+    tags = "/blog/tags/:contentbasename/"
+  [permalinks.taxonomy]
+    categories = "/blog/categories/"
+    tags = "/blog/tags/"
+
+# ---------------------------------------------------------------------------
+# Languages. English is live. To add a language later:
+#   1. uncomment its block below
+#   2. add i18n/<code>.yaml (UI strings)
+#   3. put translated Markdown in content/<code>/ (tools/migrate_from_strapi.py --locale <code>)
+# ---------------------------------------------------------------------------
+[languages]
+  [languages.en]
+    label = "English"
+    locale = "en"
+    weight = 1
+    contentDir = "content/en"
+#  [languages.de]
+#    label = "Deutsch"
+#    locale = "de"
+#    weight = 2
+#    contentDir = "content/de"
+#  [languages.nl]
+#    label = "Nederlands"
+#    locale = "nl"
+#    weight = 3
+#    contentDir = "content/nl"
+
+[markup]
+  [markup.goldmark.renderer]
+    # The old CMS rendered single line breaks as <br>; keep that behaviour
+    hardWraps = true
+    unsafe = true
+  [markup.goldmark.parser.attribute]
+    block = true
+
+[menus]
+  [[menus.main]]
+    name = "About"
+    identifier = "about"
+    pageRef = "/about"
+    weight = 10
+  [[menus.main]]
+    name = "Diary"
+    identifier = "diary"
+    pageRef = "/blog"
+    weight = 20
+  [[menus.main]]
+    name = "Gallery"
+    identifier = "gallery"
+    pageRef = "/gallery"
+    weight = 30
+  [[menus.main]]
+    name = "FAQ"
+    identifier = "faq"
+    pageRef = "/faq"
+    weight = 40
+  [[menus.footer]]
+    name = "Legal Notice"
+    pageRef = "/legal-notice"
+    weight = 10
+  [[menus.footer]]
+    name = "Privacy"
+    pageRef = "/privacy"
+    weight = 20
+  [[menus.footer]]
+    name = "Newsletter"
+    pageRef = "/newsletter"
+    weight = 30
+
+[params]
+  description = "VIA: a 4,000 km unsupported ultracycling race across Europe, organised by ultracyclists, for ultracyclists."
+  strapline = "Ride the road to greatness"
+  email = "info@via-race.com"
+  # "Follow the race" button + live tracker embed
+  trackerURL = "https://app.madcap.cc/event/via-race-26"
+  # Hero background video (YouTube id). Leave empty to show only the poster image.
+  heroYouTube = "RD6u8tsNnyE"
+  # Newsletter: the existing Cloudflare Worker (free tier) that adds an email to Mailchimp
+  newsletterEndpoint = "https://via-race-web-newsletter.ian-64c.workers.dev/"
+
+  [params.social]
+    instagram = "https://www.instagram.com/via_race/"
+    youtube = "https://www.youtube.com/channel/UCWWLp3VjMVJeniPPhnAFwug/"
+    facebook = "https://www.facebook.com/profile.php?id=61553097144690"
+
+[outputs]
+  home = ["html", "rss"]
+  section = ["html", "rss"]
+
+[sitemap]
+  changeFreq = "weekly"
+
+[minify]
+  minifyOutput = true
+
+[imaging]
+  [imaging.jpeg]
+    quality = 80
+  [imaging.webp]
+    quality = 78
+  resampleFilter = "lanczos"
+  [imaging.exif]
+    disableDate = true
+    disableLatLong = true

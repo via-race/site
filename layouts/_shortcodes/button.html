@@ -1,0 +1,2 @@
+{{- /* {{< button href="https://..." >}}Label{{< /button >}}  optional: style="dark|ghost" */ -}}
+<a class="btn{{ with .Get "style" }} btn--{{ . }}{{ end }}" href="{{ .Get "href" }}"{{ if strings.HasPrefix (.Get "href") "http" }} target="_blank" rel="noopener"{{ end }}>{{ .Inner }}</a>

@@ -1,0 +1,21 @@
+{{- /* Cards from a simple list. Each line: "- emoji | title | text"
+{{< pillars >}}
+- 🌍 | The adventure of a lifetime | Exploring breathtaking landscapes
+{{< /pillars >}} */ -}}
+<ul class="pillars">
+{{- range split (trim .Inner "\n ") "\n" }}
+  {{- $l := trim (strings.TrimPrefix "-" (trim . " ")) " " }}
+  {{- if $l }}
+  {{- $parts := split $l "|" }}
+  <li class="pillar">
+    {{- if ge (len $parts) 3 }}
+    <span class="emoji" aria-hidden="true">{{ trim (index $parts 0) " " }}</span>
+    <h3>{{ trim (index $parts 1) " " | markdownify }}</h3>
+    <p>{{ trim (index $parts 2) " " | markdownify }}</p>
+    {{- else }}
+    <p>{{ $l | markdownify }}</p>
+    {{- end }}
+  </li>
+  {{- end }}
+{{- end }}
+</ul>

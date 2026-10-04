@@ -1,0 +1,6 @@
+{{ define "main" }}
+<header class="page-hero"><div class="wrap"><span class="eyebrow">{{ T "diary" }}</span><h1>{{ .Title }}</h1></div></header>
+<div class="section"><div class="wrap filters">
+  {{- range .Data.Terms.ByCount }}<a href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }} ({{ .Count }})</a>{{ end }}
+</div></div>
+{{ end }}

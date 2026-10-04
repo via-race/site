@@ -1,0 +1,21 @@
+{{- /* Line icons (24px grid, stroke = currentColor). usage: partial "icon.html" "distance" */ -}}
+{{- $p := dict
+  "menu" `<path d="M4 7h16M4 12h16M4 17h16"/>`
+  "close" `<path d="M6 6l12 12M18 6L6 18"/>`
+  "prev" `<path d="M15 5l-7 7 7 7"/>`
+  "next" `<path d="M9 5l7 7-7 7"/>`
+  "arrow" `<path d="M5 12h14M13 6l6 6-6 6"/>`
+  "distance" `<circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h6a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h6"/>`
+  "calendar" `<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>`
+  "elevation" `<path d="M3 20l6.5-11 4 6.5L16 12l5 8z"/><path d="M8 11.5l1.5 1.5 1.5-1.5"/>`
+  "pin" `<path d="M12 21s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/>`
+  "flag" `<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>`
+  "finish" `<path d="M5 21V4"/><path d="M5 4h13v8H5z"/><path d="M9 4v8M13 4v8M5 8h13" stroke-width="1"/>`
+  "route" `<path d="M4 19c4 0 4-6 8-6s4-6 8-6"/><circle cx="4" cy="19" r="1.6"/><circle cx="20" cy="7" r="1.6"/>`
+  "instagram" `<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/>`
+  "youtube" `<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/>`
+  "facebook" `<path d="M14.5 8H17V4.5h-2.5A4 4 0 0 0 10.5 8.5V11H8v3.5h2.5V21H14v-6.5h2.6l.4-3.5h-3V9a1 1 0 0 1 1-1z"/>`
+  "external" `<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>`
+-}}
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">{{ index $p . | safeHTML }}</svg>
+{{- /* */ -}}

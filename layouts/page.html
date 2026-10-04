@@ -1,0 +1,13 @@
+{{ define "main" }}
+<header class="page-hero">
+  <div class="narrow">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </div>
+</header>
+<div class="section">
+  <article class="narrow prose">
+    {{ .Content }}
+  </article>
+</div>
+{{ end }}

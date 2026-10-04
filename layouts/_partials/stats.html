@@ -1,0 +1,12 @@
+{{- $r := hugo.Data.race }}
+{{- $start := time $r.start_date }}{{ $end := time $r.end_date }}
+{{- $days := add (div ($end.Sub $start).Hours 24) 1 | int }}
+<section class="stats" aria-label="{{ $r.chapter }}">
+  <ul class="wrap">
+    <li>{{ partial "icon.html" "distance" }}<span class="label">{{ T "distance" }}</span><span class="value">{{ $r.distance }}</span></li>
+    <li>{{ partial "icon.html" "elevation" }}<span class="label">{{ T "elevation" }}</span><span class="value">{{ $r.elevation }}</span></li>
+    <li>{{ partial "icon.html" "calendar" }}<span class="label">{{ T "days" }}</span><span class="value">{{ $days }}</span></li>
+    <li>{{ partial "icon.html" "flag" }}<span class="label">{{ T "start" }}</span><span class="value">{{ $r.start_location }}<br><small>{{ $start | time.Format "2 Jan 2006" }}</small></span></li>
+    <li>{{ partial "icon.html" "finish" }}<span class="label">{{ T "finish" }}</span><span class="value">{{ $r.end_location }}<br><small>{{ $end | time.Format "2 Jan 2006" }}</small></span></li>
+  </ul>
+</section>

@@ -1,0 +1,5 @@
+{{- /* Returns the page's cover image resource (front matter `image`), or nil. */ -}}
+{{- $img := "" -}}
+{{- with .Params.image }}{{ $img = $.Resources.Get . }}{{ end -}}
+{{- if and (not $img) .IsHome }}{{ $img = resources.Get "img/hero.jpg" }}{{ end -}}
+{{- return $img -}}

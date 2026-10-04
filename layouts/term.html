@@ -1,0 +1,11 @@
+{{ define "main" }}
+<header class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">{{ T "diary" }} · {{ .Data.Singular | humanize }}</span>
+    <h1>{{ .Title }}</h1>
+  </div>
+</header>
+<div class="section">
+  <div class="wrap">{{ partial "diary-list.html" (dict "page" . "pages" .Pages) }}</div>
+</div>
+{{ end }}

@@ -1,0 +1,7 @@
+{{- /* usage: partial "newsletter-form.html" "footer"  (the argument makes the input id unique) */ -}}
+<form class="newsletter" data-newsletter data-ok="{{ T "subscribed" }}" data-err="{{ T "subscribe_error" }}" action="{{ site.Params.newsletterEndpoint }}" method="post">
+  <label class="sr-only" for="nl-{{ . }}">{{ T "email" }}</label>
+  <input id="nl-{{ . }}" type="email" name="email" required autocomplete="email" placeholder="{{ T "email_placeholder" }}">
+  <button class="btn" type="submit">{{ T "subscribe" }}</button>
+  <p class="msg" role="status" aria-live="polite"></p>
+</form>

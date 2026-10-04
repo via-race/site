@@ -1,0 +1,23 @@
+# "Supported by" strip in the footer. Logos live in static/img/sponsors/
+sponsors:
+  - name: MADCAP
+    url: https://madcap.cc
+    logo: /img/sponsors/madcap.png
+  - name: De Proloog
+    url: https://deproloog.cc/
+    logo: /img/sponsors/proloog_logo.png
+  - name: Owlin
+    url: https://owlin.cc/
+    logo: /img/sponsors/owlin.png
+  - name: Spacecode
+    url: https://spacecode.eu
+    logo: /img/sponsors/spacecode.png
+  - name: Chimpanzee
+    url: https://www.chimpanzeebar.com
+    logo: /img/sponsors/chimpanzee.png
+  - name: Zeer
+    url: https://zeerbrewing.com
+    logo: /img/sponsors/zeer.png
+  - name: Botn Fjellstue
+    url: https://www.instagram.com/botnfjellstue/
+    logo: /img/sponsors/botn_fjellstue.png

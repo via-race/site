@@ -1,0 +1,45 @@
+<footer class="site-footer">
+  <div class="sponsors">
+    <div class="wrap">
+      <span class="label">{{ T "supported_by" }}</span>
+      <ul>
+        {{- range hugo.Data.sponsors.sponsors }}
+        <li><a href="{{ .url }}" target="_blank" rel="noopener" title="{{ .name }}"><img src="{{ strings.TrimPrefix "/" .logo | relURL }}" alt="{{ .name }}" loading="lazy" width="140" height="44"></a></li>
+        {{- end }}
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-main">
+    <div>
+      <a class="footer-logo" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }}">
+        {{ partial "logo.html" (dict "name" "via-icon" "class" "icon") }}
+        {{ partial "logo.html" (dict "name" "via-wordmark" "class" "word") }}
+      </a>
+      <p class="strap mt-0">{{ site.Params.strapline }}</p>
+      <div class="social">
+        {{ with site.Params.social.instagram }}<a href="{{ . }}" target="_blank" rel="noopener" aria-label="Instagram">{{ partial "icon.html" "instagram" }}</a>{{ end }}
+        {{ with site.Params.social.youtube }}<a href="{{ . }}" target="_blank" rel="noopener" aria-label="YouTube">{{ partial "icon.html" "youtube" }}</a>{{ end }}
+        {{ with site.Params.social.facebook }}<a href="{{ . }}" target="_blank" rel="noopener" aria-label="Facebook">{{ partial "icon.html" "facebook" }}</a>{{ end }}
+      </div>
+    </div>
+    <div>
+      <h2>{{ T "explore" }}</h2>
+      <ul>
+        {{- range site.Menus.main }}<li><a href="{{ .URL }}">{{ T .Identifier | default .Name }}</a></li>{{ end }}
+        <li><a href="{{ site.Params.trackerURL }}" target="_blank" rel="noopener">{{ T "follow_the_race" }}</a></li>
+        <li><a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>{{ T "newsletter" }}</h2>
+      <p>{{ T "newsletter_text" }}</p>
+      {{ partial "newsletter-form.html" "footer" }}
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="wrap actions" style="justify-content:space-between">
+      <span>© {{ now.Year }} VIA. {{ T "rights" }}</span>
+      <span>{{ range $i, $m := site.Menus.footer }}{{ if $i }} · {{ end }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}</span>
+    </div>
+  </div>
+</footer>

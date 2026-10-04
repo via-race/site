@@ -1,0 +1,39 @@
+{{ define "main" }}
+{{- $cover := partial "cover.html" . }}
+<header class="page-hero{{ if $cover }} page-hero--image{{ end }}">
+  {{- with $cover }}{{ partial "img.html" (dict "img" . "sizes" "100vw" "alt" "" "eager" true "widths" (slice 800 1280 1920)) }}{{ end }}
+  <div class="narrow">
+    <div class="meta" style="color:var(--via-light-slate);margin-bottom:14px">
+      {{- range .GetTerms "categories" }}<a class="chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
+      <span>· {{ .ReadingTime }} {{ T "min_read" }}</span>
+    </div>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </div>
+</header>
+<div class="section">
+  <article class="narrow prose">
+    {{ .Content }}
+  </article>
+
+  {{- $imgs := slice }}
+  {{- range .Params.gallery }}{{ with $.Resources.Get . }}{{ $imgs = $imgs | append . }}{{ end }}{{ end }}
+  {{- with $imgs }}
+  <section class="wrap mt-3" aria-label="{{ T "photos" }}">
+    <h2 class="center">{{ T "photos" }}</h2>
+    {{ partial "gallery.html" . }}
+  </section>
+  {{- end }}
+
+  <div class="narrow mt-3">
+    {{- with .GetTerms "tags" }}
+    <div class="meta">{{ range . }}<a class="chip chip--tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}</div>
+    {{- end }}
+    <nav class="post-nav" aria-label="{{ T "more_stories" }}">
+      {{- with .NextInSection }}<a class="prev" href="{{ .RelPermalink }}"><small>← {{ T "newer" }}</small>{{ .Title }}</a>{{ end }}
+      {{- with .PrevInSection }}<a class="next" href="{{ .RelPermalink }}"><small>{{ T "older" }} →</small>{{ .Title }}</a>{{ end }}
+    </nav>
+  </div>
+</div>
+{{ end }}

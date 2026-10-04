@@ -1,0 +1,13 @@
+{{ define "main" }}
+<header class="page-hero">
+  <div class="narrow">
+    <span class="eyebrow">404</span>
+    <h1>{{ T "not_found" }}</h1>
+    <p>{{ T "not_found_text" }}</p>
+  </div>
+</header>
+<div class="section"><div class="narrow actions">
+  <a class="btn" href="{{ site.Home.RelPermalink }}">{{ T "home" }}</a>
+  <a class="btn btn--dark" href="{{ relref site.Home "/blog" }}">{{ T "diary" }}</a>
+</div></div>
+{{ end }}

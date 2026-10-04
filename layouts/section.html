@@ -1,0 +1,14 @@
+{{ define "main" }}
+<header class="page-hero">
+  <div class="wrap">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </div>
+</header>
+<div class="section">
+  <div class="wrap">
+    {{ with .Content }}<div class="prose narrow">{{ . }}</div>{{ end }}
+    <div class="cards">{{ range .Pages }}{{ partial "post-card.html" . }}{{ end }}</div>
+  </div>
+</div>
+{{ end }}

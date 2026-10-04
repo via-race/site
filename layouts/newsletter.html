@@ -1,0 +1,11 @@
+{{ define "main" }}
+<header class="page-hero">
+  <div class="narrow"><h1>{{ .Title }}</h1></div>
+</header>
+<div class="section">
+  <div class="narrow prose">
+    {{ .Content }}
+    {{ partial "newsletter-form.html" "page" }}
+  </div>
+</div>
+{{ end }}

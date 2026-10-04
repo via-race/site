@@ -1,0 +1,43 @@
+{{ define "main" }}
+<header class="page-hero">
+  <div class="wrap">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+  </div>
+</header>
+<div class="section">
+  <div class="wrap faq-layout">
+    <nav class="toc" aria-label="{{ T "contents" }}">
+      <ol>
+        {{- range .Params.sections }}{{ if .items }}<li><a href="#{{ .id }}">{{ .title }}</a></li>{{ end }}{{ end }}
+        {{- with .Params.timeline }}<li><a href="#timeline">{{ T "timeline" }}</a></li>{{ end }}
+      </ol>
+      {{ with .Params.last_updated }}<p class="updated mt-2">{{ . }}</p>{{ end }}
+    </nav>
+    <div>
+      {{- range .Params.sections }}{{ if .items }}
+      <section class="faq-section" id="{{ .id }}">
+        <h2>{{ .title }}</h2>
+        {{- range .items }}
+        <details class="qa" id="{{ .q | anchorize | truncate 60 "" }}">
+          <summary>{{ .q | markdownify }}</summary>
+          <div class="answer prose">{{ .a | $.Page.RenderString (dict "display" "block") }}</div>
+        </details>
+        {{- end }}
+      </section>
+      {{- end }}{{ end }}
+      {{- with .Params.timeline }}
+      <section class="faq-section" id="timeline">
+        <h2>{{ T "timeline" }}</h2>
+        <ol class="timeline">
+          {{- range . }}
+          {{- $d := time .date }}
+          <li{{ if $d.Before now }} class="past"{{ end }}><time datetime="{{ .date }}">{{ $d | time.Format ":date_long" }}</time>{{ .info | $.Page.RenderString (dict "display" "block") }}</li>
+          {{- end }}
+        </ol>
+      </section>
+      {{- end }}
+    </div>
+  </div>
+</div>
+{{ end }}
