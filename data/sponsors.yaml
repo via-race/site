@@ -1,23 +1,27 @@
 # "Supported by" strip in the footer. Logos live in static/img/sponsors/
+# featured: true puts a logo on its own row above the others (main partner).
+# Logos are shown in their original colours on the dark footer, so use
+# versions that read well on dark slate (white / light artwork).
 sponsors:
   - name: MADCAP
     url: https://madcap.cc
     logo: /img/sponsors/madcap.png
-  - name: De Proloog
-    url: https://deproloog.cc/
-    logo: /img/sponsors/proloog_logo.png
-  - name: Owlin
-    url: https://owlin.cc/
-    logo: /img/sponsors/owlin.png
-  - name: Spacecode
-    url: https://spacecode.eu
-    logo: /img/sponsors/spacecode.png
+    featured: true
   - name: Chimpanzee
     url: https://www.chimpanzeebar.com
     logo: /img/sponsors/chimpanzee.png
   - name: Zeer
     url: https://zeerbrewing.com
     logo: /img/sponsors/zeer.png
+  - name: SpaceCode
+    url: https://spacecode.eu
+    logo: /img/sponsors/spacecode.png
+  - name: Owlin
+    url: https://owlin.cc/
+    logo: /img/sponsors/owlin.png
+  - name: De Proloog
+    url: https://deproloog.cc/
+    logo: /img/sponsors/proloog_logo.png
   - name: Botn Fjellstue
     url: https://www.instagram.com/botnfjellstue/
     logo: /img/sponsors/botn_fjellstue.png

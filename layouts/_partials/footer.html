@@ -2,10 +2,14 @@
   <div class="sponsors">
     <div class="wrap">
       <span class="label">{{ T "supported_by" }}</span>
+      {{- $all := hugo.Data.sponsors.sponsors }}
+      {{- with where $all "featured" true }}
+      <ul class="sponsors__featured">
+        {{- range . }}{{ partial "sponsor.html" . }}{{ end }}
+      </ul>
+      {{- end }}
       <ul>
-        {{- range hugo.Data.sponsors.sponsors }}
-        <li><a href="{{ .url }}" target="_blank" rel="noopener" title="{{ .name }}"><img src="{{ strings.TrimPrefix "/" .logo | relURL }}" alt="{{ .name }}" loading="lazy" width="140" height="44"></a></li>
-        {{- end }}
+        {{- range where $all "featured" "!=" true }}{{ partial "sponsor.html" . }}{{ end }}
       </ul>
     </div>
   </div>
