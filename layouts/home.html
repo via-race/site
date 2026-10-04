@@ -18,8 +18,6 @@
   </div>
 </section>
 
-{{ partial "stats.html" . }}
-
 <section class="section section--slate">
   <div class="wrap">
     <div class="section__head">
@@ -34,6 +32,8 @@
     </ul>
   </div>
 </section>
+
+{{ partial "stats.html" . }}
 
 {{- with .Params.map_image }}{{ with resources.Get . }}
 <section class="section">
